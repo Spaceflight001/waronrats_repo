@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b3fu6btlyegtt"]
+
+[ext_resource type="Script" uid="uid://do20pl4skygoh" path="res://rat.gd" id="1_pmwci"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pmwci"]
+friction = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmwci"]
+albedo_color = Color(0.3665946, 0.3665946, 0.36659458, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pmwci"]
+material = SubResource("StandardMaterial3D_pmwci")
+
+[sub_resource type="BoxMesh" id="BoxMesh_xl1m0"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmwci"]
+
+[node name="Rat" type="RigidBody3D" unique_id=2086646947]
+physics_material_override = SubResource("PhysicsMaterial_pmwci")
+gravity_scale = 0.0
+can_sleep = false
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 8
+linear_damp = 1.0
+script = ExtResource("1_pmwci")
+
+[node name="MeshInstance" type="MeshInstance3D" parent="." unique_id=261468321]
+mesh = SubResource("BoxMesh_pmwci")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance" unique_id=793952769]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.7)
+mesh = SubResource("BoxMesh_xl1m0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1055589215]
+shape = SubResource("BoxShape3D_pmwci")
+
+[node name="CollisionRay" type="RayCast3D" parent="." unique_id=852237630]
+target_position = Vector3(0, -0.6, 0)
+hit_from_inside = true
+
+[node name="JumpRaycast" type="RayCast3D" parent="." unique_id=201819909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+target_position = Vector3(0, 0, -3)
+hit_from_inside = true

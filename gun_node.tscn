@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cyr31rt5f5c0j"]
+
+[ext_resource type="Script" uid="uid://c2miuhtuirnwo" path="res://gun_node.gd" id="1_ax8wj"]
+[ext_resource type="AudioStream" uid="uid://cvxjvl70it2gu" path="res://Sounds/gun_shot_1.mp3" id="1_nfwbb"]
+[ext_resource type="PackedScene" uid="uid://crlv8kbqb66qo" path="res://bullet.tscn" id="2_127jl"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_glpr6"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_pjt0s"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_127jl"]
+viewport_path = NodePath("Gun/SubViewport")
+
+[node name="GunNode" type="Node3D" unique_id=1868586264]
+script = ExtResource("1_ax8wj")
+damage = 52.0
+firerate = 520.0
+accuracy = 50.0
+pellets = 1
+velocity = 200.0
+aimspeed = 4.0
+ammo = 47
+capacity = 47
+recoil_power = 80.0
+aim_recoil = 0.6
+recoil_frequency = 0.5
+bullet_mesh = ExtResource("2_127jl")
+
+[node name="Gun" type="MeshInstance3D" parent="." unique_id=666832647]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.3, -0.40000004, -0.9)
+mesh = SubResource("CylinderMesh_glpr6")
+
+[node name="AimPositon" type="Marker3D" parent="Gun" unique_id=901207378]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999997, 7.1054274e-15, 0, 1.4210855e-14, 0.9999998, 0, 0.70000017, 0.13000005)
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="Gun" unique_id=108344139]
+stream = ExtResource("1_nfwbb")
+volume_db = -10.0
+max_polyphony = 100
+
+[node name="Origin" type="Marker3D" parent="Gun" unique_id=1137061932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.4901161e-08)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gun" unique_id=804137371]
+transform = Transform3D(0.009999997, 0, 0, 0, 0.02399999, -2.220446e-16, 0, 0, 0.05999999, 0, 0.39999998, 0.10000011)
+mesh = SubResource("BoxMesh_pjt0s")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Gun" unique_id=1874132901]
+transform = Transform3D(0.08657997, 0, 0, 0, 0.075694054, -1.110223e-16, 0, -2.220446e-16, 0.023999998, 0, -0.23000008, 0.10000011)
+mesh = SubResource("BoxMesh_pjt0s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Gun" unique_id=1134795126]
+transform = Transform3D(0.02999999, 0, 0, 0, 0.011999995, -2.220446e-16, 0, 0, 0.05999999, 0.030000001, -0.19999999, 0.099999994)
+mesh = SubResource("BoxMesh_pjt0s")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Gun" unique_id=70791936]
+transform = Transform3D(0.02999999, 0, 0, 0, 0.011999995, -2.220446e-16, 0, 0, 0.05999999, -0.030000001, -0.19999999, 0.099999994)
+mesh = SubResource("BoxMesh_pjt0s")
+
+[node name="FlashLight" type="OmniLight3D" parent="Gun" unique_id=1447431420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 2.9802322e-08)
+light_color = Color(0.9455041, 0.9234665, 0.6446268, 1)
+light_energy = 0.0
+shadow_enabled = true
+shadow_bias = 0.5
+omni_range = 10.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Gun" unique_id=631474742]
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, -0.05, 0, 0.05, -2.1855695e-09, 0, -0.3, 0.20000009)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_127jl")
+
+[node name="SubViewport" type="SubViewport" parent="Gun" unique_id=285510003]
+auto_translate_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="Gun/SubViewport" unique_id=116026851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.19999999, -1)
+visible = false
+fov = 10.0

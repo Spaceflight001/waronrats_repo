@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b4mt3x6cc3hol"]
+
+[ext_resource type="Script" uid="uid://bcl31lg18cp5p" path="res://character.gd" id="1_glpr6"]
+[ext_resource type="PackedScene" uid="uid://cyr31rt5f5c0j" path="res://gun_node.tscn" id="2_pjt0s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vu45j"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vu45j"]
+
+[node name="Character" type="CharacterBody3D" unique_id=1273595487 node_paths=PackedStringArray("gun")]
+script = ExtResource("1_glpr6")
+gun = NodePath("Backpack/GunNode")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1087644899]
+shape = SubResource("CapsuleShape3D_vu45j")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1361801231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1143795358]
+mesh = SubResource("CapsuleMesh_vu45j")
+
+[node name="Backpack" type="Node3D" parent="." unique_id=921638713]
+visible = false
+
+[node name="GunNode" parent="Backpack" unique_id=1868586264 instance=ExtResource("2_pjt0s")]

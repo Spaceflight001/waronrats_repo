@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://crlv8kbqb66qo"]
+
+[ext_resource type="Script" uid="uid://csnel5pco3587" path="res://bullet.gd" id="1_v7oki"]
+[ext_resource type="PackedScene" uid="uid://c2b2g5mahceth" path="res://bullet_hit.tscn" id="2_v8qja"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtl8c"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 50.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_v7oki"]
+material = SubResource("StandardMaterial3D_rtl8c")
+radius = 0.02
+height = 0.4
+
+[node name="Bullet" type="MeshInstance3D" unique_id=1503130507]
+mesh = SubResource("SphereMesh_v7oki")
+script = ExtResource("1_v7oki")
+hiteffect = ExtResource("2_v8qja")
+
+[node name="Raycast" type="RayCast3D" parent="." unique_id=1537079004]
+target_position = Vector3(0, -0.4, 0)
+collision_mask = 3
+hit_from_inside = true

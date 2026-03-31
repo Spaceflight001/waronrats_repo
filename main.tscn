@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://dja8043wgdwqb"]
+
+[ext_resource type="PackedScene" uid="uid://b4mt3x6cc3hol" path="res://character.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cx16ylnc8k3vh" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://wxg80tyhxg8w" path="res://buttons.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://crlv8kbqb66qo" path="res://bullet.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c2b2g5mahceth" path="res://bullet_hit.tscn" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://dpx83l3w3rlf7" path="res://Sounds/hitmarker.wav" id="6_272bh"]
+[ext_resource type="AudioStream" uid="uid://cmohlvu0yt5ec" path="res://Sounds/killmarker.wav" id="7_272bh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h2yge"]
+sky_top_color = Color(0.31198454, 0.45367932, 0.56070274, 1)
+sky_horizon_color = Color(0.7374641, 0.7598789, 0.77680445, 1)
+ground_bottom_color = Color(0.31073946, 0.25870365, 0.21938267, 1)
+ground_horizon_color = Color(0.7374641, 0.7598789, 0.77680445, 1)
+
+[sub_resource type="Sky" id="Sky_1bvp3"]
+sky_material = SubResource("ProceduralSkyMaterial_h2yge")
+
+[sub_resource type="Environment" id="Environment_lquwl"]
+background_mode = 2
+sky = SubResource("Sky_1bvp3")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_0xm2m"]
+colors = PackedColorArray(0.36734524, 0.69740117, 0.39289793, 1, 0.33481294, 0.5778211, 0.24571949, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h2yge"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1bvp3"]
+noise = SubResource("FastNoiseLite_h2yge")
+color_ramp = SubResource("Gradient_0xm2m")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.19016919, 0.36124298, 0.18453994, 1)
+albedo_texture = SubResource("NoiseTexture2D_1bvp3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+material = SubResource("StandardMaterial3D_0xm2m")
+size = Vector3(40, 1, 40)
+
+[node name="Main" type="Node" unique_id=1858492943]
+script = ExtResource("1_lquwl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=527758292]
+environment = SubResource("Environment_lquwl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=189987949]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=309657022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+use_collision = true
+collision_layer = 3
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="." unique_id=1011021482]
+transform = Transform3D(2.6, 0, 0, 0, 1, 0, 0, 0, 0.3, -71.9, -2, 0)
+use_collision = true
+collision_layer = 3
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="." unique_id=1468104215]
+transform = Transform3D(0.099999964, 0, 0, 0, 1, 0, 0, 0, 1, 18, -1, 0)
+use_collision = true
+collision_layer = 3
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="." unique_id=31184754]
+transform = Transform3D(0.40999988, 0, 0, 0, 5.4150004, 0, 0, 0, 0.099999964, -1.5, -1, 3.6000001)
+use_collision = true
+collision_layer = 3
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="." unique_id=1111204306]
+transform = Transform3D(0.5085391, 1.459371, 0, -0.13626258, 5.4464464, 0, 0, 0, -0.37200004, -8.6, -1.6, 20.4)
+use_collision = true
+collision_layer = 3
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="." unique_id=1887046246]
+transform = Transform3D(0.25426948, 0.72968537, 0.32216147, -0.13626257, 5.446446, 3.304024e-16, 0.4404077, 1.2638522, -0.186, -8.6, -1.6, -12.9)
+use_collision = true
+collision_layer = 3
+mesh = SubResource("BoxMesh_7dm0k")
+
+[node name="Character" parent="." unique_id=1273595487 instance=ExtResource("1_ig7tw")]
+
+[node name="Buttons" parent="." unique_id=1004121363 instance=ExtResource("2_0xm2m")]
+
+[node name="ObjectPool" type="Node3D" parent="." unique_id=2147057840]
+physics_interpolation_mode = 2
+visible = false
+
+[node name="Bullet" parent="ObjectPool" unique_id=1503130507 instance=ExtResource("4_1bvp3")]
+
+[node name="bullet_hit" parent="." unique_id=1302323724 instance=ExtResource("6_7mycd")]
+
+[node name="Hitmarker" type="AudioStreamPlayer" parent="." unique_id=1608190568]
+stream = ExtResource("6_272bh")
+volume_db = 1.0
+pitch_scale = 1.5
+max_polyphony = 100
+
+[node name="Killmarker" type="AudioStreamPlayer" parent="." unique_id=1158195254]
+stream = ExtResource("7_272bh")
+volume_db = 3.0
+pitch_scale = 2.0
+max_polyphony = 100
+
+[connection signal="feed" from="." to="Buttons" method="_on_main_feed"]

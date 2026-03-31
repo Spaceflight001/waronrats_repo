@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://wxg80tyhxg8w"]
+
+[ext_resource type="Script" uid="uid://kt75u1005gyj" path="res://buttons.gd" id="1_pg40h"]
+[ext_resource type="Script" uid="uid://bcy6h43iqc5vq" path="res://feed_label.gd" id="2_5sm3h"]
+
+[sub_resource type="Gradient" id="Gradient_5sm3h"]
+offsets = PackedFloat32Array(0.5862069, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q21lg"]
+gradient = SubResource("Gradient_5sm3h")
+fill = 1
+fill_from = Vector2(0.5277778, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2us2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pg40h"]
+font_size = 49
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5sm3h"]
+font_size = 20
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q21lg"]
+font_size = 30
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p1pc"]
+bg_color = Color(0, 0.72038615, 0.3263962, 1)
+
+[node name="Buttons" type="CanvasLayer" unique_id=1004121363]
+script = ExtResource("1_pg40h")
+
+[node name="Sideblack" type="Sprite2D" parent="." unique_id=1464411145]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(574, 324)
+scale = Vector2(18.125, 10.15625)
+texture = SubResource("GradientTexture2D_q21lg")
+
+[node name="Label" type="Label" parent="." unique_id=482420948]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -269.0
+offset_top = -121.0
+offset_right = -52.0
+offset_bottom = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_l2us2")
+text = "100 / 100"
+label_settings = SubResource("LabelSettings_pg40h")
+
+[node name="FeedLabel" type="Label" parent="." unique_id=720652292]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -209.0
+offset_right = 155.0
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_l2us2")
+label_settings = SubResource("LabelSettings_5sm3h")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_5sm3h")
+
+[node name="FPSLabel" type="Label" parent="." unique_id=1232475531]
+offset_right = 217.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_l2us2")
+text = "100 / 100"
+label_settings = SubResource("LabelSettings_q21lg")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=660882753]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_top = -45.0
+offset_right = 142.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_3p1pc")
+value = 50.0
+allow_greater = true
+allow_lesser = true
